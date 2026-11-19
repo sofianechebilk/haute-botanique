@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agronomic Cultivation Guide · Haute Botanique</title>
+  <meta name="description" content="Comprehensive step-by-step agronomic cultivation manual, harvesting protocol, and Michelin chef market guide.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Dedicated Plant Page Styles */
+    .plant-hero-container {
+      max-width: 1200px;
+      margin: 1.5rem auto 2.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .plant-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 1.25rem;
+    }
+
+    .plant-breadcrumbs a {
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+
+    .plant-breadcrumbs a:hover {
+      text-decoration: underline;
+    }
+
+    .plant-hero-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      box-shadow: var(--shadow-lux);
+    }
+
+    @media (max-width: 900px) {
+      .plant-hero-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .plant-hero-img-box {
+      position: relative;
+      min-height: 380px;
+      background: #060e0a;
+    }
+
+    .plant-hero-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .plant-hero-info {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .plant-title-main {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+    }
+
+    .plant-latin-title {
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--gold-primary);
+      margin-bottom: 1.25rem;
+    }
+
+    .plant-summary-text {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .plant-badges-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Agronomic Quick Matrix Grid */
+    .agronomic-matrix {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+    }
+
+    .matrix-box {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+    }
+
+    .matrix-box-lbl {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-primary);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .matrix-box-val {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Guide Content Layout */
+    .plant-guide-layout {
+      max-width: 1200px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2.5rem;
+    }
+
+    @media (max-width: 950px) {
+      .plant-guide-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .guide-article {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .guide-section-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 2.25rem;
+    }
+
+    .guide-sec-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: #ffffff;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 0.75rem;
+    }
+
+    .step-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .step-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .step-text {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.7;
+    }
+
+    /* Sidebar Economics Card */
+    .sidebar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-focus);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      position: sticky;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .sidebar-heading {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--gold-light);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.75rem;
+    }
+
+    .econ-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .econ-stat-lbl {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-dim);
+    }
+
+    .econ-stat-val {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .econ-stat-val.highlight {
+      color: var(--gold-light);
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+    }
+
+    .farmer-warning-box {
+      background: rgba(212, 175, 55, 0.08);
+      border-left: 3px solid var(--gold-primary);
+      padding: 1rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .farmer-warning-box strong {
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .site-header, .site-footer, .plant-breadcrumbs, .sidebar-actions, .no-print {
+        display: none !important;
+      }
+      .plant-hero-card, .matrix-grid, .guide-section-block, .sidebar-card {
+        background: #ffffff !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        color: #000 !important;
+      }
+      .plant-title-main, .guide-sec-title, .matrix-box-val, .step-heading {
+        color: #000000 !important;
+      }
+      .step-text, .plant-summary-text {
+        color: #333333 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌿</div>
+        <div class="brand-text">
+          <h1>Haute Botanique</h1>
+          <span>Grower & Agronomic Knowledge Portal</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#catalog">← Back to Crop Directory</a></li>
+          <li><a href="index.html#simulator">500m² Greenhouse Blueprint</a></li>
+          <li><a href="index.html#roiCalculator">ROI & Packing Calculator</a></li>
+          <li><a href="index.html#pairingMatrix">Chef Culinary Library</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button onclick="window.print()" class="btn-primary" style="padding: 0.55rem 1.1rem; font-size: 0.85rem;">
+          🖨️ Print Cultivation Guide
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & Plant Hero Header -->
+  <main class="plant-hero-container">
+    <div class="plant-breadcrumbs">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="index.html#catalog">Rare Gastronomic Crops</a>
+      <span>›</span>
+      <span id="breadcrumbCurrent">Cultivar Guide</span>
+    </div>
+
+    <div class="plant-hero-card">
+      <div class="plant-hero-img-box">
+        <img id="plantImage" src="" alt="Botanical specimen" />
+      </div>
+
+      <div class="plant-hero-info">
+        <div class="plant-badges-row">
+          <span id="plantBadge" class="badge-tag"></span>
+          <span id="plantDifficultyBadge" class="badge-tag" style="background: rgba(46, 204, 113, 0.2); color: #2ecc71;"></span>
+          <span id="plantViabilityBadge" class="badge-tag" style="background: rgba(212, 175, 55, 0.2); color: var(--gold-light);"></span>
+        </div>
+
+        <h1 id="plantName" class="plant-title-main">Loading Crop...</h1>
+        <p id="plantScientific" class="plant-latin-title"></p>
+        <p id="plantSummary" class="plant-summary-text"></p>
+
+        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+          <a href="#cultivation" class="btn-primary">Step-by-Step Growing Guide ↓</a>
+          <a href="#harvesting" class="btn-secondary">Harvesting & Michelin Packing ↓</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Agronomic Quick Matrix -->
+  <section class="agronomic-matrix">
+    <div class="matrix-grid">
+      <div class="matrix-box">
+        <div class="matrix-box-lbl">Climate & Optimal Temp</div>
+        <div id="matClimate" class="matrix-box-val">-</div>
+      </div>
+
+      <div class="matrix-box">
+        <div class="matrix-box-lbl">Sunlight & Exposure</div>
+        <div id="matSun" class="matrix-box-val">-</div>
+      </div>
+
+      <div class="matrix-box">
+        <div class="matrix-box-lbl">Substrate & Soil pH</div>
+        <div id="matSoil" class="matrix-box-val">-</div>
+      </div>
+
+      <div class="matrix-box">
+        <div class="matrix-box-lbl">Stratification & Germination</div>
+        <div id="matGerm" class="matrix-box-val">-</div>
+      </div>
+
+      <div class="matrix-box">
+        <div class="matrix-box-lbl">Plant Spacing</div>
+        <div id="matSpacing" class="matrix-box-val">-</div>
+      </div>
+
+      <div class="matrix-box">
+        <div class="matrix-box-lbl">Days to First Harvest</div>
+        <div id="matDays" class="matrix-box-val">-</div>
+      </div>
+
+      <div class="matrix-box">
+        <div class="matrix-box-lbl">Greenhouse Suitability</div>
+        <div id="matGreenhouse" class="matrix-box-val">-</div>
+      </div>
+
+      <div class="matrix-box">
+        <div class="matrix-box-lbl">Irrigation & Salinity</div>
+        <div id="matWater" class="matrix-box-val">-</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Detailed Guide Content -->
+  <div class="plant-guide-layout">
+    <!-- Left Column: Detailed Steps -->
+    <article class="guide-article">
+      <!-- Section 1: Step-by-Step Cultivation -->
+      <section class="guide-section-block" id="cultivation">
+        <h2 class="guide-sec-title">
+          <span>🌱</span> Complete Cultivation & Agronomic Protocol
+        </h2>
+
+        <div class="step-item">
+          <h3 class="step-heading">1. Seed Preparation & Stratification</h3>
+          <p id="guideSeedPrep" class="step-text"></p>
+        </div>
+
+        <div class="step-item">
+          <h3 class="step-heading">2. Sowing, Plug Propagation & Transplanting</h3>
+          <p id="guideSowing" class="step-text"></p>
+        </div>
+
+        <div class="step-item">
+          <h3 class="step-heading">3. Soil Biology & Organic Fertility</h3>
+          <p id="guideFertility" class="step-text"></p>
+        </div>
+
+        <div class="step-item">
+          <h3 class="step-heading">4. Irrigation & Salinity Management</h3>
+          <p id="guideIrrigation" class="step-text"></p>
+        </div>
+
+        <div class="step-item">
+          <h3 class="step-heading">5. Pest, Fungal & Micro-Climate Control</h3>
+          <p id="guidePests" class="step-text"></p>
+        </div>
+      </section>
+
+      <!-- Section 2: Harvesting & Post-Harvest Cold Chain -->
+      <section class="guide-section-block" id="harvesting">
+        <h2 class="guide-sec-title">
+          <span>📦</span> Precision Harvesting & Michelin Packaging Standard
+        </h2>
+
+        <div class="step-item">
+          <h3 class="step-heading">Optimal Harvest Timing & Stage</h3>
+          <p id="harvTiming" class="step-text"></p>
+        </div>
+
+        <div class="step-item">
+          <h3 class="step-heading">Harvest Method & Crown Preservation</h3>
+          <p id="harvMethod" class="step-text"></p>
+        </div>
+
+        <div class="step-item">
+          <h3 class="step-heading">Cold-Chain Storage & Packaging Protocol (2°C - 4°C)</h3>
+          <p id="harvStorage" class="step-text"></p>
+        </div>
+
+        <div class="step-item">
+          <h3 class="step-heading">Post-Harvest Commercial Shelf Life</h3>
+          <p id="harvShelfLife" class="step-text"></p>
+        </div>
+      </section>
+
+      <!-- Section 3: Fine Dining Culinary Applications -->
+      <section class="guide-section-block" id="culinary">
+        <h2 class="guide-sec-title">
+          <span>🍽️</span> Haute Cuisine & Chef Demand Profile
+        </h2>
+
+        <div class="step-item">
+          <h3 class="step-heading">Why Fine Dining Chefs Buy This Crop</h3>
+          <p id="culinaryWhy" class="step-text"></p>
+        </div>
+
+        <div class="step-item" style="background: rgba(0,0,0,0.25); border-left: 3px solid var(--gold-primary); padding: 1.25rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+          <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--gold-light); font-weight: 700;">Signature 3-Star Michelin Dish Preparation</span>
+          <h4 id="culinaryDish" style="font-family: var(--font-serif); font-size: 1.25rem; color: #ffffff; margin: 0.4rem 0;"></h4>
+          <p id="culinaryHandling" class="step-text"></p>
+        </div>
+      </section>
+    </article>
+
+    <!-- Right Sidebar: Commercial Economics for Farmers -->
+    <aside class="sidebar-wrapper">
+      <div class="sidebar-card">
+        <h3 class="sidebar-heading">Farmer Commercial Matrix</h3>
+
+        <div class="econ-stat">
+          <span class="econ-stat-lbl">Wholesale Restaurant Value</span>
+          <span id="econPrice" class="econ-stat-val highlight">-</span>
+        </div>
+
+        <div class="econ-stat">
+          <span class="econ-stat-lbl">Annual Marketable Yield</span>
+          <span id="econYield" class="econ-stat-val">-</span>
+        </div>
+
+        <div class="econ-stat">
+          <span class="econ-stat-lbl">Chef Market Demand</span>
+          <span id="econDemand" class="econ-stat-val">-</span>
+        </div>
+
+        <div class="econ-stat">
+          <span class="econ-stat-lbl">Break-Even Horizon</span>
+          <span id="econBreakEven" class="econ-stat-val">-</span>
+        </div>
+
+        <div class="econ-stat">
+          <span class="econ-stat-lbl">Agronomic Difficulty</span>
+          <span id="econDiff" class="econ-stat-val">-</span>
+        </div>
+
+        <!-- Real Warning from Document Page 13 -->
+        <div class="farmer-warning-box">
+          <strong>⚠️ Purveyor Reality Check (PDF Page 13):</strong>
+          Do not assume the highest price per leaf equals highest profit. Factor in weekly order volumes, post-harvest sorting waste, packaging materials, and delivery cold-chain before establishing acreage.
+        </div>
+
+        <div class="sidebar-actions no-print" style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem;">
+          <a href="index.html#roiCalculator" class="btn-secondary" style="justify-content: center; text-align: center; border-color: var(--gold-primary); color: var(--gold-light);">
+            🧮 Launch ROI & Packing Calculator →
+          </a>
+          <button onclick="window.print()" class="btn-primary" style="justify-content: center;">
+            🖨️ Print Grower Spec Sheet
+          </button>
+          <a href="index.html#catalog" class="btn-secondary" style="justify-content: center; text-align: center;">
+            Browse Other Crops →
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>© 2026 Haute Botanique · Comprehensive Agronomic Knowledge Base for Specialty Farmers.</span>
+      <a href="index.html" style="color: var(--gold-primary);">Return to Homepage</a>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="plant.js"></script>
+</body>
+</html>
